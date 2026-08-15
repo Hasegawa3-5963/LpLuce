@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会社概要 | 株式会社NOAA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .page-head{padding:72px 0 40px;}
+  .page-head h1{font-size:36px;margin-top:14px;}
+  .company-table{width:100%;border-collapse:collapse;}
+  .company-table tr{border-top:1px solid var(--line);}
+  .company-table tr:last-child{border-bottom:1px solid var(--line);}
+  .company-table th{
+    text-align:left;font-weight:500;color:var(--ink-muted);
+    font-size:13px;padding:22px 24px 22px 0;width:180px;vertical-align:top;
+    font-family:var(--font-mono);letter-spacing:0.02em;
+  }
+  .company-table td{padding:22px 0;font-size:15px;line-height:1.9;}
+  .company-table td a{color:var(--brass-light);}
+  .company-table td a:hover{text-decoration:underline;}
+  @media (max-width:700px){
+    .company-table th{display:block;width:auto;padding:22px 0 8px;}
+    .company-table td{display:block;padding:0 0 22px;}
+    .company-table tr{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="brandmark"><img src="/assets/logo-noaa.png" alt="NOAA" class="logo-img"><span class="name">JOYCART</span></a>
+    <button class="navtoggle" id="navtoggle" aria-label="メニュー">☰</button>
+    <nav id="nav">
+      <a href="/luce/">LUCE</a>
+      <a href="/news/">お知らせ</a>
+      <a href="/voices/">ユーザーの声</a>
+      <a href="/company/">会社概要</a>
+      <a href="/contact/" class="cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" style="border-top:none;">
+  <div class="wrap">
+    <span class="eyebrow">Company</span>
+    <h1>会社概要</h1>
+  </div>
+</section>
+
+<section style="padding-top:0;border-top:none;">
+  <div class="wrap">
+    <table class="company-table">
+      <tr><th>商号</th><td>株式会社NOAA　（NOAA Co.,Ltd.）</td></tr>
+      <tr><th>登記年月日</th><td>1985年6月18日</td></tr>
+      <tr><th>所在地</th><td>
+        本社<br>
+        〒165-0032 東京都中野区鷺宮3-1-8<br><br>
+        名古屋サポートセンター<br>
+        〒452-0917 愛知県清須市西堀江1915番地
+      </td></tr>
+      <tr><th>総合案内</th><td>TEL：03-5356-9333　FAX：03-5356-9334</td></tr>
+      <tr><th>代表者</th><td>西原　一憲</td></tr>
+      <tr><th>資本金</th><td>3,000千円</td></tr>
+      <tr><th>事業内容</th><td>電動車いすの企画・製造卸及び福祉用具卸販売</td></tr>
+      <tr><th>Email</th><td><a href="mailto:info@noaa.jp">info@noaa.jp</a></td></tr>
+      <tr><th>URL</th><td>
+        JOYカートブランドサイト<br>
+        <a href="https://noaa.jp" target="_blank" rel="noopener">noaa.jp</a><br><br>
+        JOYレント（レンタル予約サイト）<br>
+        <a href="http://noaa.bizrent.biz/" target="_blank" rel="noopener">noaa.bizrent.biz</a>
+      </td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>株式会社NOAA　<a href="tel:0353569333">TEL：03-5356-9333</a></span>
+    <span><a href="/">noaa.jp</a>　© NOAA Inc.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navtoggle').addEventListener('click', function(){
+  document.getElementById('nav').classList.toggle('open');
+});
+</script>
+</body>
+</html>

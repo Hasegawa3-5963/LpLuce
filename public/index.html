@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社NOAA | 電動シニアカート JOYCART</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .hero{padding:96px 0 88px;}
+  .hero h1{font-size:48px;line-height:1.4;margin:18px 0 26px;max-width:16ch;}
+  .hero h1 em{font-style:normal;color:var(--brass-light);}
+  .hero p{font-size:16px;color:var(--ink-muted);max-width:46ch;margin-bottom:36px;}
+  .products{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);}
+  .product{background:var(--bg);padding:48px;display:flex;flex-direction:column;gap:14px;}
+  .product .eyebrow{margin-bottom:4px;}
+  .product h3{font-size:24px;font-weight:500;font-family:var(--font-body);}
+  .product p{color:var(--ink-muted);font-size:14px;}
+  .product a.more{color:var(--brass-light);font-size:13px;font-family:var(--font-mono);margin-top:8px;}
+  @media (max-width:700px){.products{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="brandmark"><img src="/assets/logo-noaa.png" alt="NOAA" class="logo-img"><span class="name">JOYCART</span></a>
+    <button class="navtoggle" id="navtoggle" aria-label="メニュー">☰</button>
+    <nav id="nav">
+      <a href="/luce/">LUCE</a>
+      <a href="/news/">お知らせ</a>
+      <a href="/voices/">ユーザーの声</a>
+      <a href="/company/">会社概要</a>
+      <a href="/contact/" class="cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Electric mobility for everyday life</span>
+    <h1>歩くように、<em>自由に</em>、出かける。</h1>
+    <p>株式会社NOAAは、免許不要の電動シニアカート「JOYCART」シリーズを企画・製造・販売しています。コンパクトなJOYと、上質なLUCE。暮らしに合わせて選べます。</p>
+    <a href="/luce/" class="btn-primary">LUCEを見る</a>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Lineup</span>
+      <h2>製品ラインナップ</h2>
+    </div>
+    <div class="products">
+      <div class="product">
+        <span class="eyebrow">Compact</span>
+        <h3>JOYCART</h3>
+        <p>畳めばどんなタクシーにも積める、究極のコンパクトさを追求した一台。</p>
+      </div>
+      <div class="product">
+        <span class="eyebrow">Premium</span>
+        <img src="/assets/wordmark-luce.svg" alt="JOYCART LUCE" style="height:34px;width:auto;margin:2px 0 4px;">
+        <h3 style="display:none;">JOYCART LUCE</h3>
+        <p>ゆったりとした座り心地と、上質な佇まい。Minotti Lieto Luceに着想を得たモデル。</p>
+        <a href="/luce/" class="more">詳しく見る →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>株式会社NOAA　<a href="tel:0353569333">TEL：03-5356-9333</a></span>
+    <span><a href="/">noaa.jp</a>　© NOAA Inc.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navtoggle').addEventListener('click', function(){
+  document.getElementById('nav').classList.toggle('open');
+});
+</script>
+</body>
+</html>

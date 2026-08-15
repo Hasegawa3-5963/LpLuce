@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ | 株式会社NOAA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .page-head{padding:72px 0 40px;}
+  .page-head h1{font-size:36px;margin-top:14px;}
+  form{max-width:560px;}
+  .field{margin-bottom:22px;}
+  .field label{display:block;font-size:13px;color:var(--ink-muted);margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%;background:var(--surface-1);border:1px solid var(--line-strong);border-radius:2px;
+    color:var(--ink);font-family:var(--font-body);font-size:15px;padding:12px 14px;
+  }
+  .field textarea{min-height:140px;resize:vertical;}
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--brass);}
+  .field .error{color:#d98a6a;font-size:13px;margin-top:6px;display:none;}
+  #status{margin-top:18px;font-size:14px;color:var(--ink-muted);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="brandmark"><img src="/assets/logo-noaa.png" alt="NOAA" class="logo-img"><span class="name">JOYCART</span></a>
+    <button class="navtoggle" id="navtoggle" aria-label="メニュー">☰</button>
+    <nav id="nav">
+      <a href="/luce/">LUCE</a>
+      <a href="/news/">お知らせ</a>
+      <a href="/voices/">ユーザーの声</a>
+      <a href="/company/">会社概要</a>
+      <a href="/contact/" class="cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" style="border-top:none;">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h1>お問い合わせ</h1>
+  </div>
+</section>
+
+<section style="padding-top:0;border-top:none;">
+  <div class="wrap">
+    <form id="contact-form" novalidate>
+      <div class="field">
+        <label for="name">お名前</label>
+        <input type="text" id="name" name="name" autocomplete="name">
+        <p class="error" id="name-error">お名前を入力してください</p>
+      </div>
+      <div class="field">
+        <label for="email">メールアドレス</label>
+        <input type="email" id="email" name="email" autocomplete="email">
+        <p class="error" id="email-error">正しいメールアドレスを入力してください</p>
+      </div>
+      <div class="field">
+        <label for="message">お問い合わせ内容</label>
+        <textarea id="message" name="message"></textarea>
+        <p class="error" id="message-error">お問い合わせ内容を入力してください</p>
+      </div>
+      <button type="submit" class="btn-primary" id="submit-btn">送信する</button>
+      <p id="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>株式会社NOAA　<a href="tel:0353569333">TEL：03-5356-9333</a></span>
+    <span><a href="/">noaa.jp</a>　© NOAA Inc.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navtoggle').addEventListener('click', function(){
+  document.getElementById('nav').classList.toggle('open');
+});
+
+var form = document.getElementById('contact-form');
+var statusEl = document.getElementById('status');
+var submitBtn = document.getElementById('submit-btn');
+
+function showError(field, show){
+  document.getElementById(field + '-error').style.display = show ? 'block' : 'none';
+}
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var name = document.getElementById('name').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var message = document.getElementById('message').value.trim();
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  showError('name', !name);
+  showError('email', !emailOk);
+  showError('message', !message);
+  if(!name || !emailOk || !message){
+    statusEl.textContent = '';
+    return;
+  }
+
+  submitBtn.disabled = true;
+  statusEl.textContent = '送信中…';
+
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, email: email, message: message })
+  })
+  .then(function(r){
+    if(!r.ok){ throw new Error('failed'); }
+    return r.json();
+  })
+  .then(function(){
+    statusEl.textContent = 'お問い合わせを送信しました。';
+    form.reset();
+  })
+  .catch(function(){
+    statusEl.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+  })
+  .finally(function(){
+    submitBtn.disabled = false;
+  });
+});
+</script>
+</body>
+</html>

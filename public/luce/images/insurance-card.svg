@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">JOYCart LUCE 専用保険カード</title>
+  <desc id="desc">初年度保険料込み、対人・対物補償1億円、自損事故死亡補償100万円を示すカード</desc>
+
+  <rect width="1200" height="800" fill="#F7F1E7"/>
+  <rect x="26" y="26" width="1148" height="748" rx="10" fill="none" stroke="#D8C7AD" stroke-width="2"/>
+
+  <!-- Shield -->
+  <path d="M600 76 C650 105 699 116 750 122 V233 C750 320 691 379 600 414 C509 379 450 320 450 233 V122 C501 116 550 105 600 76Z"
+        fill="#FCFAF6" stroke="#A97A3A" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M535 234 L583 281 L674 181" fill="none" stroke="#A97A3A" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="427" y="31" width="346" height="60" rx="30" fill="#A97A3A"/>
+  <text x="600" y="70" text-anchor="middle" fill="#FFFFFF"
+        font-family="'Noto Sans JP','Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif" font-size="28" font-weight="700" letter-spacing="2">初年度保険料込み</text>
+
+  <text x="600" y="468" text-anchor="middle" fill="#2A2520"
+        font-family="'Noto Serif JP','Yu Mincho','Hiragino Mincho ProN',serif" font-size="43" font-weight="700" letter-spacing="2">万一の事故にも、安心を。</text>
+
+  <line x1="116" y1="510" x2="1084" y2="510" stroke="#D8C7AD" stroke-width="2"/>
+  <line x1="600" y1="542" x2="600" y2="690" stroke="#D8C7AD" stroke-width="2"/>
+
+  <g font-family="'Noto Sans JP','Yu Gothic','Hiragino Kaku Gothic ProN',sans-serif">
+    <text x="350" y="574" text-anchor="middle" fill="#7A6F61" font-size="27" font-weight="600" letter-spacing="2">対人・対物補償</text>
+    <text x="350" y="657" text-anchor="middle" fill="#2A2520" font-size="72" font-weight="700">1億円</text>
+
+    <text x="850" y="574" text-anchor="middle" fill="#7A6F61" font-size="27" font-weight="600" letter-spacing="2">自損事故死亡補償</text>
+    <text x="850" y="657" text-anchor="middle" fill="#2A2520" font-size="72" font-weight="700">100万円</text>
+
+    <text x="600" y="722" text-anchor="middle" fill="#7A6F61" font-size="22" letter-spacing="1">あいおいニッセイ同和損保</text>
+    <text x="600" y="753" text-anchor="middle" fill="#9B8E7E" font-size="18">2年目以降は任意加入となります（保険料別途）</text>
+  </g>
+</svg>

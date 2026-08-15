@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ユーザーの声 | 株式会社NOAA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;800&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .page-head{padding:72px 0 40px;}
+  .page-head h1{font-size:36px;margin-top:14px;}
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .voice-card{background:var(--surface-1);border:1px solid var(--line);border-radius:4px;padding:28px;}
+  .voice-card .date{font-family:var(--font-mono);font-size:12px;color:var(--brass-light);}
+  .voice-card .name{font-size:14px;color:var(--ink-muted);margin:10px 0 12px;}
+  .voice-card p.body{font-size:15px;}
+  .empty{color:var(--ink-muted);font-size:14px;padding:40px 0;grid-column:1/-1;}
+  @media (max-width:700px){.voice-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="/" class="brandmark"><img src="/assets/logo-noaa.png" alt="NOAA" class="logo-img"><span class="name">JOYCART</span></a>
+    <button class="navtoggle" id="navtoggle" aria-label="メニュー">☰</button>
+    <nav id="nav">
+      <a href="/luce/">LUCE</a>
+      <a href="/news/">お知らせ</a>
+      <a href="/voices/">ユーザーの声</a>
+      <a href="/company/">会社概要</a>
+      <a href="/contact/" class="cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head" style="border-top:none;">
+  <div class="wrap">
+    <span class="eyebrow">Voices</span>
+    <h1>ユーザーの声</h1>
+  </div>
+</section>
+
+<section style="padding-top:0;border-top:none;">
+  <div class="wrap">
+    <div class="voice-grid" id="voice-grid">
+      <p class="empty">読み込み中…</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>株式会社NOAA　<a href="tel:0353569333">TEL：03-5356-9333</a></span>
+    <span><a href="/">noaa.jp</a>　© NOAA Inc.</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('navtoggle').addEventListener('click', function(){
+  document.getElementById('nav').classList.toggle('open');
+});
+
+fetch('/content/voices.json')
+  .then(function(r){ return r.json(); })
+  .then(function(data){
+    var grid = document.getElementById('voice-grid');
+    var items = (data.items || []).slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
+    if(items.length === 0){
+      grid.innerHTML = '<p class="empty">まだ声が届いていません。</p>';
+      return;
+    }
+    grid.innerHTML = items.map(function(item){
+      return '<div class="voice-card">'
+        + '<span class="date">' + item.date + '</span>'
+        + '<p class="name">' + item.name + '</p>'
+        + '<p class="body">' + item.body + '</p>'
+        + '</div>';
+    }).join('');
+  })
+  .catch(function(){
+    document.getElementById('voice-grid').innerHTML = '<p class="empty">読み込みに失敗しました。</p>';
+  });
+</script>
+</body>
+</html>
