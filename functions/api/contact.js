@@ -1,5 +1,15 @@
 import { EmailMessage } from "cloudflare:email";
-import { createMimeMessage } from "mimetext";
+
+function base64Utf8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary);
+}
+
+function encodedWord(str) {
+  return `=?UTF-8?B?${base64Utf8(str)}?=`;
+}
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -20,22 +30,25 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: "invalid input" }), { status: 400 });
   }
 
-  const msg = createMimeMessage();
-  msg.setSender({ name: "noaa.jp お問い合わせフォーム", addr: env.CONTACT_FROM_ADDRESS });
-  msg.setRecipient(env.CONTACT_TO_ADDRESS);
-  msg.setSubject("【noaa.jp】お問い合わせがありました");
-  msg.addMessage({
-    contentType: "text/plain",
-    data:
-      "お名前: " + name + "\n" +
-      "メールアドレス: " + email + "\n\n" +
-      "お問い合わせ内容:\n" + message,
-  });
+  const bodyText =
+    "お名前: " + name + "\r\n" +
+    "メールアドレス: " + email + "\r\n\r\n" +
+    "お問い合わせ内容:\r\n" + message;
+
+  const raw =
+    `From: ${env.CONTACT_FROM_ADDRESS}\r\n` +
+    `To: ${env.CONTACT_TO_ADDRESS}\r\n` +
+    `Subject: ${encodedWord("【noaa.jp】お問い合わせがありました")}\r\n` +
+    `MIME-Version: 1.0\r\n` +
+    `Content-Type: text/plain; charset="UTF-8"\r\n` +
+    `Content-Transfer-Encoding: base64\r\n` +
+    `\r\n` +
+    base64Utf8(bodyText) + `\r\n`;
 
   const emailMessage = new EmailMessage(
     env.CONTACT_FROM_ADDRESS,
     env.CONTACT_TO_ADDRESS,
-    msg.asRaw()
+    raw
   );
 
   try {
