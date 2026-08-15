@@ -1,7 +1,0 @@
-{
-  "name": "noaa-site",
-  "private": true,
-  "dependencies": {
-    "mimetext": "^3.0.0"
-  }
-}
